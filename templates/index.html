@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Emotion-Based Music Recommendation</title>
+</head>
+<body>
+    <h1>Emotion-Based Music Recommendation System</h1>
+    <img src="{{ url_for('video_feed') }}" width="640" height="480">
+    <h2>Detected Emotion: <span id="emotion">None</span></h2>
+    <script>
+        async function fetchEmotion() {
+            const response = await fetch('/emotion');
+            const data = await response.json();
+            document.getElementById('emotion').textContent = data.emotion;
+        }
+        setInterval(fetchEmotion, 2000); // Update emotion every 2 seconds
+    </script>
+</body>
+</html>
